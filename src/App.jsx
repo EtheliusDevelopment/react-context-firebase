@@ -3,8 +3,16 @@ import Navbar from "./components/Navbar";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
 import RequireAuth from "./components/RequireAuth";
+import Register from "./routes/Register";
+import { useContext } from "react";
+import { userContext } from "./context/UserProvider";
 
 function App() {
+  const { user } = useContext(userContext);
+
+  if (user === false) {
+    return <p>Loading....</p>;
+  }
   return (
     <>
       <Navbar />
@@ -18,6 +26,7 @@ function App() {
           }
         />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </>
   );
